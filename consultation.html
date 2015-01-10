@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <link type="text/css" rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <form method='post' class='entry-form' action='$action'>
+            <div class="information"><span>$label_mandatory</span><br /><span>$information</span></div>
+            <div class='input-group'>
+                <label class='caption'  for='ef-name'>$label_name <span class='md-mark'>(*)</span></label><input id='ef-name' name='ef-name' type='text' value='$name' required placeholder='$hint_name' title='$required' />
+            </div>
+            <div class='input-group'>
+                <label class='caption'  for='ef-sex-female'>$label_sex <span class='md-mark'>(*)</span></label>
+                <input id='ef-sex-female' name='ef-sex' type='radio' value='female' $sex_female required /><label for='ef-sex-female'>$label_sex_female</label>&nbsp;<input  id='ef-sex-male' name='ef-sex' type='radio' value='male' $sex_male required/><label for='ef-sex-male'>$label_sex_male</label>
+            </div>
+            <div class='input-group'>
+                <label class='caption'  for='ef-email'>$label_email <span class='md-mark'>(*)</span></label><input id='ef-email' name='ef-email' type='email' value='$email' required placeholder='$hint_email' title='$required' />
+            </div>
+		     <div class="input-group">
+		         <label class="caption" for="ef-tel">$label_tel</label>
+		         <input type="text" id="ef-tel" name="ef-tel"  value="$tel" placeholder="$hint_tel"  />
+		     </div>	
+            <div class='input-group'>
+                <label class='caption'  for='ef-web'>$label_web</label><input id='ef-web' name='ef-web'  type='url' value='$web' placeholder='$hint_web' title='$hint_web' />
+            </div>
+            <div class='input-group'>
+                <label class='caption'  for='ef-subject'>$label_subject <span class='md-mark'>(*)</span></label><input id='ef-subject' name='ef-subject' type='text' value='$subject' required placeholder='$hint_subject' title='$required' />
+            </div>
+            <div class='input-group'>
+                <label class='caption'  for='ef-message'>$label_message <span class='md-mark'>(*)</span></label><textarea id='ef-message' name='ef-message' required placeholder='$hint_message' title='$required' >$message</textarea>
+            </div>
+            <div class='input-group'>
+                <label class='caption'  for='ef-undisclose'>$label_undisclose <span class='md-mark'>(*)</span></label><input id='ef-undisclose' name='ef-undisclose' type='checkbox' $undisclose  />
+            </div>
+            <div class='input-group'>
+                <label class='caption wider'>$label_birthdates</label>
+                <div>
+                    <label class='caption narrow'  for='ef-mybirthyear'>$label_mybirthdate</label><span id="myname_stuff" class="narrow" ></span>
+				    <select id='ef-mybirthyear' name='ef-mybirthyear' class="wider" >$my_year_options</select>
+				    <select id='ef-mybirthmonth' name='ef-mybirthmonth' >$my_month_options</select>
+				    <select id='ef-mybirthday' name='ef-mybirthday' >$my_day_options</select>
+				    <select id='ef-mybirthhour' name='ef-mybirthhour' >$my_hour_options</select>
+                </div>
+                <div>
+                    <label class='caption narrow'  for='ef-targetbirthyear'>$label_targetbirthdate</label><input id='ef-targetname' name='ef-targetname' type='text' value='$targetname' placeholder='$hint_targetname' class="narrow" />
+				    <select id='ef-targetbirthyear' name='ef-targetbirthyear' class="wider">$target_year_options</select>
+				    <select id='ef-targetbirthmonth' name='ef-targetbirthmonth' >$target_month_options</select>
+				    <select id='ef-targetbirthday' name='ef-targetbirthday' >$target_day_options</select>
+				    <select id='ef-targetbirthhour' name='ef-targetbirthhour' >$target_hour_options</select>
+                </div>
+                <div>
+                    <label class='caption narrow'  for='ef-intruderbirthyear'>$label_intruderbirthdate</label><input id='ef-intrudername' name='ef-intrudername' type='text' value='$intrudername' placeholder='$hint_intrudername'  class="narrow" />
+				    <select id='ef-intruderbirthyear' name='ef-intruderbirthyear' class="wider">$intruder_year_options</select>
+				    <select id='ef-intruderbirthmonth' name='ef-intruderbirthmonth' >$intruder_month_options</select>
+				    <select id='ef-intruderbirthday' name='ef-intruderbirthday' >$intruder_day_options</select>
+				    <select id='ef-intruderbirthhour' name='ef-intruderbirthhour' >$intruder_hour_options</select>
+                </div>
+            </div>
+            <div class='command'>
+                <input type='submit' name='ef-submitted' value='$submit' />
+            </div>
+        </form>
+    </body>
+</html>

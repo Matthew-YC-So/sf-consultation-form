@@ -1,0 +1,74 @@
+form.entry-form input {
+    width: auto;
+}
+
+form.entry-form input[type=text], form.entry-form input[type=email], form.entry-form input[type=url], form.entry-form textarea {
+	width:20em;
+}
+
+form.entry-form textarea {
+     height: 6em;
+     width: 30em;
+}
+
+form.entry-form input[type=radio]{
+	margin-left:2em;
+}
+
+form.entry-form label {
+    display: inline-block;
+    width: 8em;
+    font-weight: bold;
+    vertical-align: top;
+}
+
+
+form.entry-form select {
+   font-size: 0.8em;
+}
+
+
+form.entry-form .wider{
+    width: 30em;
+}
+
+form.entry-form input + label   {
+    width: auto;
+}
+
+form.entry-form .input-group{
+	margin: 0.5em 0 0 0;
+}
+
+form.entry-form select {
+    width: 3.5em;
+} 
+
+form.entry-form select.wider {
+    width: 5em;   
+}
+
+
+form.entry-form .information {
+    color: #2a70a2;
+}
+
+form.contact-form .error {
+    color: #990000;
+}
+
+form.entry-form .command{
+    margin-top: 1em;
+}
+
+form.entry-form label.narrow {
+    width: 3.5em;
+    margin-right: 1em;
+}
+
+form.entry-form input.narrow , form.entry-form  #myname_stuff{
+    display: inline-block;
+    width: 8em;
+    font-size: 0.6em;
+    height: auto;
+}
