@@ -17,7 +17,7 @@
     global $sf_consultation_form_information;
     $sf_consultation_form_information = isset($sf_consultation_form_information) ? $sf_consultation_form_information : '' ;
 
-    $form_title = $is_private  ? __('私人資詢') : __('一般資詢') ;
+    $form_title = $is_private  ? __('私人諮詢') : __('一般諮詢') ;
 
     $sex_male = isset( $_POST["ef-sex"] ) && $_POST["ef-sex"] == "male" ? "checked=\"checked\"" : "";
     $sex_female = isset( $_POST["ef-sex"] ) && $_POST["ef-sex"] == "female" ? "checked=\"checked\"" : "";
@@ -44,7 +44,7 @@
     $label_web = __('網址', 'sf-consultation-form-td');
     $label_message = __('問題', 'sf-consultation-form-td');
     $label_undisclose = __('不可公開', 'sf-consultation-form-td');
-    $label_birthdates = __('本人,對方及第三者的生長八字（西元出生年、月、日 及 時)', 'sf-consultation-form-td');
+    $label_birthdates = __('本人,對方及第三者(如有)的生長八字（西元出生年、月、日 及 時)', 'sf-consultation-form-td');
     $label_mybirthdate = __('本人', 'sf-consultation-form-td');
     $label_targetbirthdate = __('對方', 'sf-consultation-form-td');
     $label_intruderbirthdate = __('第三者', 'sf-consultation-form-td');
@@ -192,7 +192,7 @@
         '$action' => esc_url( $_SERVER['REQUEST_URI'] ),
         '$information' => $sf_consultation_form_information,
         '$label_birthday_name_relation' => $label_birthday_name_relation,
-        '$label_channels' => __('請選擇你偏好的線上資詢模式, 最多可選兩項'),
+        '$label_channels' => __('請選擇你偏好的線上諮詢模式, 最多可選兩項'),
         '$label_channel_skype' => __('Skype'),
         '$label_channel_fbmessager' => __('Facebook Messager'),
         '$label_channel_line' => __('Line'),
@@ -203,11 +203,11 @@
         '$bookd1am' => $bookd1am, '$bookd2am' => $bookd2am, '$bookd3am' => $bookd3am,  '$bookd4am' => $bookd4am, '$bookd5am' => $bookd5am,
         '$bookd1pm' => $bookd1pm, '$bookd2pm' => $bookd2pm, '$bookd3pm' => $bookd3pm,  '$bookd4pm' => $bookd4pm, '$bookd5pm' => $bookd5pm,
         '$bookdays_human_text' => $bookdays_human_text,
-        '$label_bookingdatetime' => __('請選擇你未來一個月內, 你最方便的資詢時段 (星期六, 日不設資詢) 我們會盡量配合, 作出安排'),
+        '$label_bookingdatetime' => __('請選擇你未來一個月內, 你最方便的諮詢時段 (星期六, 日不設諮詢), 我們會盡量配合, 作出安排'),
         '$submit'=> $submit,
         '$email_succeeded' => __('感謝你的查詢！ 我們將盡快回覆你!', 'sf-consultation-form-td'),
         '$incompleted_information' => __('以下資料不齊全'),
-        '$email_label_channels' => __('線上資詢模式'),
+        '$email_label_channels' => __('線上諮詢模式'),
         '$email_label_days' => __('偏好日期'),
         );
  }
@@ -223,9 +223,14 @@ function sf_html_consultation_form_code($is_private) {
     if (preg_match('/(?:<body[^>]*>)(.*)<\/body>/isU', $html, $matches)) {
         $html = $matches[1];
         
-        // Remove private section 
+        // Remove private section if public 
         if(!$is_private)
-              $html = preg_replace('/(?:<p[^>]+class=\"private-consultant\"[^>]*>)(.*)<\/p>/isU', '', $html);
+              $html = preg_replace('/(?:<div[^>]+class=\"[^"]*private-consultation[^"]*\"[^>]*>)(.*)<\/div>/isU', '', $html);
+
+        // Remove public section if private 
+        if($is_private)
+              $html = preg_replace('/(?:<div[^>]+class=\"[^"]*public-consultation[^"]*\"[^>]*>)(.*)<\/div>/isU', '', $html);
+
       
     }
 
@@ -277,8 +282,15 @@ function sf_html_consultation_form_deliver_mail($is_private) {
                 $html = $matches[1];
 
                 // Remove private section 
+                // if(!$is_private)  $html = preg_replace('/(?:<tr[^>]+class=\"private-consultant\"[^>]*>)(.*)<\/tr>/isU', '', $html);
+
+                // Remove private section if public 
                 if(!$is_private)
-                      $html = preg_replace('/(?:<tr[^>]+class=\"private-consultant\"[^>]*>)(.*)<\/tr>/isU', '', $html);
+                      $html = preg_replace('/(?:<tr[^>]+class=\"[^"]*private-consultation[^"]*\"[^>]*>)(.*)<\/tr>/isU', '', $html);
+
+                // Remove public section if private 
+                if($is_private)
+                      $html = preg_replace('/(?:<tr[^>]+class=\"[^"]*public-consultation[^"]*\"[^>]*>)(.*)<\/tr>/isU', '', $html);
             }
 
             $body = strtr($html, $translations);

@@ -33,7 +33,7 @@
             <div class='input-group'>
                 <label class='caption'  for='ef-message'>$label_message <span class='md-mark'>(*)</span></label><textarea id='ef-message' name='ef-message' required placeholder='$hint_message' title='$required' >$message</textarea>
             </div>
-            <div class='input-group'>
+            <div class="input-group public-consultation">
                 <label class='caption'  for='ef-undisclose'>$label_undisclose <span class='md-mark'>(*)</span></label><input id='ef-undisclose' name='ef-undisclose' type='checkbox' $undisclose  />
             </div>
             <div class='input-group'>
@@ -60,24 +60,22 @@
 				    <select id='ef-intruderbirthhour' name='ef-intruderbirthhour' >$intruder_hour_options</select>
                 </div>
             </div>
-            <p class="private-consultant">
-                <div class='input-group' id="channels">
-                    <label class='wide_title_caption'>$label_channels <span class='md-mark'>(*)</span></label>
-                    <input id='ef-channel-skype' name='ef-channel-skype' type='checkbox' $channel_skype  /><label class='caption' for='ef-channel-skype'>$label_channel_skype</label>
-                    <input id='ef-channel-fbmessager' name='ef-channel-fbmessager' type='checkbox' $channel_fbmessager  /><label class='caption' for='ef-channel-fbmessager'>$label_channel_fbmessager</label>
-                    <input id='ef-channel-line' name='ef-channel-line' type='checkbox' $channel_line /><label class='caption' for='ef-channel-line'>$label_channel_line</label>
-                </div>
-                <div class='input-group' id="channels">
-                    <label class='wide_title_caption'>$label_bookingdatetime <span class='md-mark'>(*)</span></label>
-                    <ul>
-                        <li><label>星期一</label><input type="checkbox" id='ef-bookd1am' name='ef-bookd1am' $bookd1am /><label for="ef-bookd1am">上午</label><input type="checkbox" id='ef-bookd1pm' name='ef-bookd1pm' $bookd1pm /><label for="ef-bookd1pm">下午</label></li>
-                        <li><label>星期二</label><input type="checkbox" id='ef-bookd2am' name='ef-bookd2am' $bookd2am /><label for="ef-bookd2am">上午</label><input type="checkbox" id='ef-bookd2pm' name='ef-bookd2pm' $bookd2pm /><label for="ef-bookd2pm">下午</label></li>
-                        <li><label>星期三</label><input type="checkbox" id='ef-bookd3am' name='ef-bookd3am' $bookd3am /><label for="ef-bookd3am">上午</label><input type="checkbox" id='ef-bookd3pm' name='ef-bookd3pm' $bookd3pm /><label for="ef-bookd3pm">下午</label></li>
-                        <li><label>星期四</label><input type="checkbox" id='ef-bookd4am' name='ef-bookd4am' $bookd4am /><label for="ef-bookd4am">上午</label><input type="checkbox" id='ef-bookd4pm' name='ef-bookd4pm' $bookd4pm /><label for="ef-bookd4pm">下午</label></li>
-                        <li><label>星期五</label><input type="checkbox" id='ef-bookd5am' name='ef-bookd5am' $bookd5am /><label for="ef-bookd5am">上午</label><input type="checkbox" id='ef-bookd5pm' name='ef-bookd5pm' $bookd5pm /><label for="ef-bookd5pm">下午</label></li>
-                    </ul>
-                </div>
-            </p>
+            <div class="input-group private-consultation" id="channels">
+                <label class='wide_title_caption'>$label_channels <span class='md-mark'>(*)</span></label>
+                <input id='ef-channel-skype' name='ef-channel-skype' type='checkbox' $channel_skype  /><label class='caption' for='ef-channel-skype'>$label_channel_skype</label>
+                <input id='ef-channel-fbmessager' name='ef-channel-fbmessager' type='checkbox' $channel_fbmessager  /><label class='caption' for='ef-channel-fbmessager'>$label_channel_fbmessager</label>
+                <input id='ef-channel-line' name='ef-channel-line' type='checkbox' $channel_line /><label class='caption' for='ef-channel-line'>$label_channel_line</label>
+            </div>
+            <div class="input-group private-consultation" id="channels">
+                <label class='wide_title_caption'>$label_bookingdatetime <span class='md-mark'>(*)</span></label>
+                <ul>
+                    <li><label>星期一</label><input type="checkbox" id='ef-bookd1am' name='ef-bookd1am' $bookd1am /><label for="ef-bookd1am">上午</label><input type="checkbox" id='ef-bookd1pm' name='ef-bookd1pm' $bookd1pm /><label for="ef-bookd1pm">下午</label></li>
+                    <li><label>星期二</label><input type="checkbox" id='ef-bookd2am' name='ef-bookd2am' $bookd2am /><label for="ef-bookd2am">上午</label><input type="checkbox" id='ef-bookd2pm' name='ef-bookd2pm' $bookd2pm /><label for="ef-bookd2pm">下午</label></li>
+                    <li><label>星期三</label><input type="checkbox" id='ef-bookd3am' name='ef-bookd3am' $bookd3am /><label for="ef-bookd3am">上午</label><input type="checkbox" id='ef-bookd3pm' name='ef-bookd3pm' $bookd3pm /><label for="ef-bookd3pm">下午</label></li>
+                    <li><label>星期四</label><input type="checkbox" id='ef-bookd4am' name='ef-bookd4am' $bookd4am /><label for="ef-bookd4am">上午</label><input type="checkbox" id='ef-bookd4pm' name='ef-bookd4pm' $bookd4pm /><label for="ef-bookd4pm">下午</label></li>
+                    <li><label>星期五</label><input type="checkbox" id='ef-bookd5am' name='ef-bookd5am' $bookd5am /><label for="ef-bookd5am">上午</label><input type="checkbox" id='ef-bookd5pm' name='ef-bookd5pm' $bookd5pm /><label for="ef-bookd5pm">下午</label></li>
+                </ul>
+            </div>
             <div class='command'>
                 <input type='submit' name='ef-submitted' value='$submit' />
             </div>
