@@ -78,7 +78,7 @@
         $undisclose_human_text = $undisclose_bool ? __('不公開')  : __('可公開') ;
     }
 
-    $channels = array('skype' => 'Skype' , 'fbmessager' => 'Facebook Message' ,'line' => 'Line');
+    $channels = array('skype' => 'Skype' , 'fbmessager' => 'Facebook Messenger' ,'line' => 'Line');
     $channels_human_text = '';
     foreach ($channels as $channel => $channel_text) {
         ${'channel_'.$channel.'_bool'} = isset( $_POST['ef-channel-'.$channel] ) ? filter_var($_POST['ef-channel-'.$channel], FILTER_VALIDATE_BOOLEAN) : FALSE;
@@ -192,9 +192,9 @@
         '$action' => esc_url( $_SERVER['REQUEST_URI'] ),
         '$information' => $sf_consultation_form_information,
         '$label_birthday_name_relation' => $label_birthday_name_relation,
-        '$label_channels' => __('請選擇你偏好的線上諮詢模式, 最多可選兩項'),
+        '$label_channels' => __('請選擇你偏好的線上諮詢模式'),
         '$label_channel_skype' => __('Skype'),
-        '$label_channel_fbmessager' => __('Facebook Messager'),
+        '$label_channel_fbmessager' => __('Facebook Messenger'),
         '$label_channel_line' => __('Line'),
         '$channel_skype' => $channel_skype,
         '$channel_fbmessager' => $channel_fbmessager,
@@ -203,7 +203,7 @@
         '$bookd1am' => $bookd1am, '$bookd2am' => $bookd2am, '$bookd3am' => $bookd3am,  '$bookd4am' => $bookd4am, '$bookd5am' => $bookd5am,
         '$bookd1pm' => $bookd1pm, '$bookd2pm' => $bookd2pm, '$bookd3pm' => $bookd3pm,  '$bookd4pm' => $bookd4pm, '$bookd5pm' => $bookd5pm,
         '$bookdays_human_text' => $bookdays_human_text,
-        '$label_bookingdatetime' => __('請選擇你未來一個月內, 你最方便的諮詢時段 (星期六, 日不設諮詢), 我們會盡量配合, 作出安排'),
+        '$label_bookingdatetime' => __('請選擇你未來一個月內, 你最方便的諮詢時段 (星期六、日不設諮詢), 我們會盡量配合, 作出安排'),
         '$submit'=> $submit,
         '$email_succeeded' => __('感謝你的查詢！ 我們將盡快回覆你!', 'sf-consultation-form-td'),
         '$incompleted_information' => __('以下資料不齊全'),
