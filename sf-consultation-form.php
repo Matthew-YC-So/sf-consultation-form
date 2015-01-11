@@ -12,7 +12,7 @@
  * License: GPL2
  */
  
-/*  Show form */
+// form display
 function sf_html_consultation_form_code() {
     
     global $sf_consultation_form_information;
