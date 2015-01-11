@@ -66,9 +66,24 @@ form.entry-form label.narrow {
     margin-right: 1em;
 }
 
-form.entry-form input.narrow , form.entry-form  #myname_stuff{
+form.entry-form input.narrow , form.entry-form span.input-stuff{
     display: inline-block;
     width: 8em;
     font-size: 0.6em;
     height: auto;
+    margin-right: 0.2em;
+}
+
+form.entry-form #channels input + label  {
+     margin: 0 1.6em 0 0.1em;
+}
+
+form.entry-form .wide_title_caption {
+     display: block;
+     width: auto;
+}
+
+form.entry-form #channels ul {
+    list-style:  none;
+    margin-left: 1em;
 }

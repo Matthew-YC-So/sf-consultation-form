@@ -11,25 +11,28 @@
  * Network: true
  * License: GPL2
  */
- 
-// form display
-function sf_html_consultation_form_code() {
+
+ function translation($is_private){
     
     global $sf_consultation_form_information;
     $sf_consultation_form_information = isset($sf_consultation_form_information) ? $sf_consultation_form_information : '' ;
 
+    $form_title = $is_private  ? __('私人資詢') : __('一般資詢') ;
+
     $sex_male = isset( $_POST["ef-sex"] ) && $_POST["ef-sex"] == "male" ? "checked=\"checked\"" : "";
     $sex_female = isset( $_POST["ef-sex"] ) && $_POST["ef-sex"] == "female" ? "checked=\"checked\"" : "";
+    $sex = isset( $_POST["ef-sex"] ) ? $_POST["ef-sex"] : '';
 
     $hint_name = __('你的名字', 'sf-consultation-form-td');
-    $hint_targetname = __('對方名字', 'sf-consultation-form-td');
-    $hint_intrudername = __('第三者名字', 'sf-consultation-form-td');
+    $hint_pername = __('名字', 'sf-consultation-form-td');
+    $hint_relation = __('關係', 'sf-consultation-form-td');
     $hint_tel = __('你的聯絡電話', 'sf-simple-contact-form');
     $hint_email = __('你的電郵地址', 'sf-consultation-form-td');
     $hint_tel = __('你的聯絡電話', 'sf-consultation-form-td');
     $hint_web = __('你的個人網址', 'sf-consultation-form-td');
     $hint_subject = __('今次聯絡主題', 'sf-consultation-form-td');
     $hint_message = __('今次聯絡內容', 'sf-consultation-form-td');
+    $label_birthday_name_relation = __('出生日期/名字/關係', 'sf-consultation-form-td');
 
     $label_name = __('姓名', 'sf-consultation-form-td');
     $label_sex = __('性別', 'sf-consultation-form-td');
@@ -57,12 +60,42 @@ function sf_html_consultation_form_code() {
     $name = isset( $_POST["ef-name"] ) ? esc_attr( $_POST["ef-name"] ) : '' ;
     $targetname = isset( $_POST["ef-targetname"] ) ? esc_attr( $_POST["ef-targetname"] ) : '' ;
     $intrudername = isset( $_POST["ef-intrudername"] ) ? esc_attr( $_POST["ef-intrudername"] ) : '' ;
+    $targetrelate = isset( $_POST["ef-targetrelate"] ) ? esc_attr( $_POST["ef-targetrelate"] ) : '' ;
+    $intruderrelate = isset( $_POST["ef-intruderrelate"] ) ? esc_attr( $_POST["ef-intruderrelate"] ) : '' ;
     $email = isset( $_POST["ef-email"] ) ? esc_attr( $_POST["ef-email"] ) : '' ;
     $tel = isset( $_POST["cf-tel"] ) ? esc_attr( $_POST["cf-tel"] ) : '' ;
     $web = isset( $_POST["ef-web"] ) ? esc_attr( $_POST["ef-web"] ) : '' ;
     $subject = isset( $_POST["ef-subject"] ) ? esc_attr( $_POST["ef-subject"] ) : '' ;
     $message = isset( $_POST["ef-message"] ) ? esc_attr( $_POST["ef-message"] ) : '' ;
-    $undisclose = isset( $_POST["ef-undisclose"] ) && esc_attr( $_POST["ef-undisclose"] ) ? 'checked="checked"'  : '' ;
+    
+    if($is_private) {
+        $undisclose_human_text ='N/A';
+        $undisclose = 'checked="checked"';
+    }
+    else {
+        $undisclose_bool = isset( $_POST["ef-undisclose"] ) ? filter_var($_POST["ef-undisclose"], FILTER_VALIDATE_BOOLEAN) : FALSE;
+        $undisclose = $undisclose_bool ? 'checked="checked"'  : '' ;
+        $undisclose_human_text = $undisclose_bool ? __('不公開')  : __('可公開') ;
+    }
+
+    $channels = array('skype' => 'Skype' , 'fbmessager' => 'Facebook Message' ,'line' => 'Line');
+    $channels_human_text = '';
+    foreach ($channels as $channel => $channel_text) {
+        ${'channel_'.$channel.'_bool'} = isset( $_POST['ef-channel-'.$channel] ) ? filter_var($_POST['ef-channel-'.$channel], FILTER_VALIDATE_BOOLEAN) : FALSE;
+        ${'channel_'.$channel} = ${'channel_'.$channel.'_bool'} ? 'checked="checked"'  : '' ;
+        $channels_human_text = $channels_human_text . (${'channel_'.$channel.'_bool'} ? ($channels_human_text === '' ? '' : '<br />' ) . $channel_text : '') ;  
+    }
+
+    $bookdays = array('1' => __('星期一', 'sf-consultation-form-td'), '2' => __('星期二', 'sf-consultation-form-td'), '3' => __('星期三', 'sf-consultation-form-td'), '4' => __('星期四', 'sf-consultation-form-td'), '5' => __('星期五', 'sf-consultation-form-td'));
+    $times = array('am' => __('上午', 'sf-consultation-form-td'), 'pm' => __('下午', 'sf-consultation-form-td'));
+    $bookdays_human_text = '';
+    foreach ($bookdays as $dk => $dv) {
+        foreach($times as $tk => $tv) {
+            ${'bookd' . $dk . $tk .'_bool'} = isset( $_POST['ef-bookd'. $dk . $tk] ) ? filter_var($_POST['ef-bookd'. $dk . $tk], FILTER_VALIDATE_BOOLEAN) : FALSE;
+            ${'bookd' . $dk . $tk } = ${'bookd' . $dk . $tk .'_bool'} ? 'checked="checked"'  : '' ;
+            $bookdays_human_text = $bookdays_human_text . (${'bookd' . $dk . $tk .'_bool'} ?  ($bookdays_human_text === '' ? '' : '<br />' ).$dv.' '.$tv : '' );
+        }
+    }
 
     // Options 
     $earliest_year = 1900;
@@ -99,13 +132,8 @@ function sf_html_consultation_form_code() {
         ${$who."_hour_options"} = ${$who."_hour_options"}.$unkown_select_option;
     }
 
-    $html = file_get_contents(plugins_url( 'consultation.html' , __FILE__ ));
-    // get anything between <body> and </body> where <body can="have_as many" attributes="as required">
-    if (preg_match('/(?:<body[^>]*>)(.*)<\/body>/isU', $html, $matches)) {
-        $html = $matches[1];
-    }
-
-    echo strtr($html, array(
+    return array(
+        '$form_title' => $form_title,
         '$label_name' => $label_name,
         '$label_sex' => $label_sex,
         '$label_sex_female' => $label_sex_female,
@@ -139,17 +167,21 @@ function sf_html_consultation_form_code() {
         '$name' => $name,
         '$targetname' => $targetname,
         '$intrudername' => $intrudername,
+        '$targetrelate' => $targetrelate,
+        '$intruderrelate' => $intruderrelate,
         '$sex_male' => $sex_male,
         '$sex_female' => $sex_female,
+        '$sex' => $sex,
         '$email' => $email,
         '$tel' => $tel,
         '$subject' => $subject,
         '$web' => $web,
         '$message' => $message,
         '$undisclose' => $undisclose,
+        '$undisclose_human_text' => $undisclose_human_text,
         '$hint_name' => $hint_name,
-        '$hint_targetname' => $hint_targetname,
-        '$hint_intrudername' => $hint_intrudername,
+        '$hint_pername' => $hint_pername,
+        '$hint_relation' => $hint_relation,
         '$hint_email' => $hint_email,
         '$hint_subject' => $hint_subject,
         '$hint_web' => $hint_web,
@@ -159,14 +191,49 @@ function sf_html_consultation_form_code() {
         '$label_mandatory' => $label_mandatory,
         '$action' => esc_url( $_SERVER['REQUEST_URI'] ),
         '$information' => $sf_consultation_form_information,
-        '$submit'=> $submit
-        )
-    );
+        '$label_birthday_name_relation' => $label_birthday_name_relation,
+        '$label_channels' => __('請選擇你偏好的線上資詢模式, 最多可選兩項'),
+        '$label_channel_skype' => __('Skype'),
+        '$label_channel_fbmessager' => __('Facebook Messager'),
+        '$label_channel_line' => __('Line'),
+        '$channel_skype' => $channel_skype,
+        '$channel_fbmessager' => $channel_fbmessager,
+        '$channel_line' => $channel_line,
+        '$channels_human_text' => $channels_human_text,
+        '$bookd1am' => $bookd1am, '$bookd2am' => $bookd2am, '$bookd3am' => $bookd3am,  '$bookd4am' => $bookd4am, '$bookd5am' => $bookd5am,
+        '$bookd1pm' => $bookd1pm, '$bookd2pm' => $bookd2pm, '$bookd3pm' => $bookd3pm,  '$bookd4pm' => $bookd4pm, '$bookd5pm' => $bookd5pm,
+        '$bookdays_human_text' => $bookdays_human_text,
+        '$label_bookingdatetime' => __('請選擇你未來一個月內, 你最方便的資詢時段 (星期六, 日不設資詢) 我們會盡量配合, 作出安排'),
+        '$submit'=> $submit,
+        '$email_succeeded' => __('感謝你的查詢！ 我們將盡快回覆你!', 'sf-consultation-form-td'),
+        '$incompleted_information' => __('以下資料不齊全'),
+        '$email_label_channels' => __('線上資詢模式'),
+        '$email_label_days' => __('偏好日期'),
+        );
+ }
+ 
+// form display
+function sf_html_consultation_form_code($is_private) {
+    
+    $translations = translation($is_private);
 
+    $html = file_get_contents(plugins_url( 'consultation.html' , __FILE__ ));
+    
+    // get anything between <body> and </body> where <body can="have_as many" attributes="as required">
+    if (preg_match('/(?:<body[^>]*>)(.*)<\/body>/isU', $html, $matches)) {
+        $html = $matches[1];
+        
+        // Remove private section 
+        if(!$is_private)
+              $html = preg_replace('/(?:<p[^>]+class=\"private-consultant\"[^>]*>)(.*)<\/p>/isU', '', $html);
+      
+    }
+
+    echo strtr($html, $translations);
 }
 
 /*  Send email */
-function sf_html_consultation_form_deliver_mail() {
+function sf_html_consultation_form_deliver_mail($is_private) {
  
     if (isset( $_POST['ef-submitted'] )) {
 
@@ -183,18 +250,9 @@ function sf_html_consultation_form_deliver_mail() {
 
         // if the submit button is clicked, send the email
         if ($all_entered) {
- 
-            // sanitize form values
-            $name    = sanitize_text_field( $_POST["ef-name"] );
-            $targetname    = sanitize_text_field( $_POST["ef-targetname"] );
-            $intrudername    = sanitize_text_field( $_POST["ef-intrudername"] );
-            $sex   = sanitize_text_field( $_POST["ef-sex"] );
-            $email   = sanitize_email( $_POST["ef-email"] );
-            $web  = sanitize_text_field( $_POST["ef-web"] );
-            $subject = sanitize_text_field( $_POST["ef-subject"] );
-            $message = nl2br(esc_textarea( $_POST["ef-message"] ));
-            $undisclose =  isset($_POST["ef-undisclose"]) ? $_POST["ef-undisclose"] : FALSE ;
 
+            $translations = translation($is_private);
+ 
             $date_format = '%1$04d-%2$02d-%3$02d %4$02d:00';
             $people = array("my", "target", "intruder"); 
             foreach ($people as $who) {
@@ -205,49 +263,47 @@ function sf_html_consultation_form_deliver_mail() {
                 ${$who."birth_date"} = sprintf($date_format , ${$who."birthyear"}, ${$who."birthmonth"}, ${$who."birthday"}, ${$who."birthhour"});
                 ${$who."birth_date"} = str_replace("999999:00", "Unknown", ${$who."birth_date"});
                 ${$who."birth_date"} = str_replace("999999", "Unknown", ${$who."birth_date"});
+                ${$who."birth_date"} = str_replace("0000-00-00", "", ${$who."birth_date"});
+                ${$who."birth_date"} = str_replace("00:00", "", ${$who."birth_date"});
+
+                // Prfix with $ character
+                $translations['$' . $who."birth_date"] = ${$who."birth_date"}; // Add to array 
             }
 
-            $body = "<style>
-                .form-data { 
-                    border-collapse: collapse ; 
-                    border-style:  none;         
-                    font-family: Calibri Verdana Arial;
-                }
-                .form-data td {
-                    vertical-align:  top;
-                    border: 1px solid #999;
-                }
-                .caption { font-weight: bold; }
-            
-            </style>
-            <table class='form-data'>
-                <tbody>
-                    <tr><td class='caption'>Name :</td><td class='entry'>$name</td></tr>
-                    <tr><td class='caption'>Sex :</td><td class='entry'>$sex</td></tr>
-                    <tr><td class='caption'>Email :</td><td class='entry'>$email</td></tr>
-                    <tr><td class='caption'>Personal web :</td><td class='entry'>$web</td></tr>
-                    <tr><td class='caption'>Message :</td><td class='entry message'>$message</td></tr>
-                    <tr><td class='caption'>Non-disclosure :</td><td class='entry undisclose'>". ($undisclose ? "Yes" : "No") ."</td></tr>
-                    <tr><td class='caption'>Client birthday (YYYY-MM-DD HH):</td><td class='entry'>$mybirth_date</td></tr>
-                    <tr><td class='caption'>Target birthday (YYYY-MM-DD HH) / Name:</td><td class='entry'>$targetbirth_date $targetname</td></tr>
-                    <tr><td class='caption'>Intruder (3rd Party) birthday (YYYY-MM-DD HH) / Name:</td><td class='entry'>$intruderbirth_date $intrudername</td></tr>
-                </tbody>
-            </table>";
+            $html = file_get_contents(plugins_url( 'email_template.html' , __FILE__ ));
+    
+            // get anything between <body> and </body> where <body can="have_as many" attributes="as required">
+            if (preg_match('/(?:<body[^>]*>)(.*)<\/body>/isU', $html, $matches)) {
+                $html = $matches[1];
+
+                // Remove private section 
+                if(!$is_private)
+                      $html = preg_replace('/(?:<tr[^>]+class=\"private-consultant\"[^>]*>)(.*)<\/tr>/isU', '', $html);
+            }
+
+            $body = strtr($html, $translations);
  
             // get the blog administrator's email address
             $to = get_option( 'admin_email' );
  
+            $name = sanitize_text_field($translations['$name']);
+            $email = sanitize_email($translations['$email']);
+            $subject = sanitize_text_field($translations['$subject']);
+
             $headers = "From: $name <$email>" . "\r\n";
  
             // HTML body
             add_filter('wp_mail_content_type',create_function('', 'return "text/html"; '));
+
+            // var_dump($body);
 
             // If email has been process for sending, display a success message
             if ( wp_mail( $to, $subject, $body, $headers ) ) {
 
                 //echo __("<div class='information'><p>" .__('感謝你的查詢！ 我們將盡快回覆你!', 'sf-consultation-form-td'). "</p></div>");
                 global $sf_consultation_form_information ;
-                $sf_consultation_form_information = __('感謝你的查詢！ 我們將盡快回覆你!', 'sf-consultation-form-td');
+                // $sf_consultation_form_information = __('感謝你的查詢！ 我們將盡快回覆你!', 'sf-consultation-form-td');
+                $sf_consultation_form_information = $translations['$email_succeeded'] ;
 
                 // Clear data
                 foreach($_POST as $key=>$value)
@@ -257,7 +313,7 @@ function sf_html_consultation_form_deliver_mail() {
                 }
 
             } else {
-                echo 'An unexpected error occurred';
+                echo 'An unexpected error occurred ' . $GLOBALS['phpmailer']->ErrorInfo;
             }
         }
         else{
@@ -267,17 +323,25 @@ function sf_html_consultation_form_deliver_mail() {
               
             }
             //echo "<div class='error'>" . __('以下資料不齊全', 'sf-consultation-form-td')  . "<ul>$missing_fieldnames</ul></div>";
-            $sf_consultation_form_information = "<div class='error'>" . __('以下資料不齊全', 'sf-consultation-form-td')  . "<ul>$missing_fieldnames</ul></div>";
+            // $sf_consultation_form_information = "<div class='error'>" . __('以下資料不齊全', 'sf-consultation-form-td')  . "<ul>$missing_fieldnames</ul></div>";
+            $sf_consultation_form_information = "<div class='error'>" . $translations['$incompleted_information']  . "<ul>$missing_fieldnames</ul></div>";
         }
     }
 }
 
 /*  Hook up function */
-function sf_cform_shortcode() {
- 
+function sf_cform_shortcode($atts) {
+
+    // default to public enquiry 
+    extract(shortcode_atts(array(
+      'is_private' => FALSE
+   ), $atts));
+
+   $is_private = filter_var($is_private, FILTER_VALIDATE_BOOLEAN);
+
     ob_start();
-    sf_html_consultation_form_deliver_mail();
-    sf_html_consultation_form_code();
+    sf_html_consultation_form_deliver_mail($is_private);
+    sf_html_consultation_form_code($is_private);
  
     return ob_get_clean();
 }
