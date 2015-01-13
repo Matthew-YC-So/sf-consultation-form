@@ -66,7 +66,7 @@
                 <input id='ef-channel-fbmessager' name='ef-channel-fbmessager' type='checkbox' $channel_fbmessager  /><label class='caption' for='ef-channel-fbmessager'>$label_channel_fbmessager</label>
                 <input id='ef-channel-line' name='ef-channel-line' type='checkbox' $channel_line /><label class='caption' for='ef-channel-line'>$label_channel_line</label>
             </div>
-            <div class="input-group private-consultation" id="channels">
+            <div class="input-group private-consultation" id="bookings">
                 <label class='wide_title_caption'>$label_bookingdatetime <span class='md-mark'>(*)</span></label>
                 <ul>
                     <li><label>星期一</label><input type="checkbox" id='ef-bookd1am' name='ef-bookd1am' $bookd1am /><label for="ef-bookd1am">上午</label><input type="checkbox" id='ef-bookd1pm' name='ef-bookd1pm' $bookd1pm /><label for="ef-bookd1pm">下午</label></li>
@@ -75,6 +75,12 @@
                     <li><label>星期四</label><input type="checkbox" id='ef-bookd4am' name='ef-bookd4am' $bookd4am /><label for="ef-bookd4am">上午</label><input type="checkbox" id='ef-bookd4pm' name='ef-bookd4pm' $bookd4pm /><label for="ef-bookd4pm">下午</label></li>
                     <li><label>星期五</label><input type="checkbox" id='ef-bookd5am' name='ef-bookd5am' $bookd5am /><label for="ef-bookd5am">上午</label><input type="checkbox" id='ef-bookd5pm' name='ef-bookd5pm' $bookd5pm /><label for="ef-bookd5pm">下午</label></li>
                 </ul>
+            </div>
+            <div class="input-group private-consultation" id="extrademands">
+                <label class='wide_title_caption'>$label_extrademands <span class='md-mark'>(*)</span></label>
+                <input id='ef-extrademand-extsession' name='ef-extrademand-extsession' type='checkbox' $extrademand_extsession  /><label class='caption' for='ef-extrademand-extsession'>$label_extrademand_extsession</label><br/>
+                <input id='ef-extrademand-voicemsg' name='ef-extrademand-voicemsg' type='checkbox' $extrademand_voicemsg  /><label class='caption' for='ef-extrademand-voicemsg'>$label_extrademand_voicemsg</label><br/>
+                <input id='ef-extrademand-other' name='ef-extrademand-other' type='checkbox' $extrademand_other /><label class='caption' for='ef-extrademand-other'>$label_extrademand_other</label><input type="text" id="ef-extrademand-otherinput" name="ef-extrademand-otherinput" value="$extrademand_otherinput" />
             </div>
             <div class='command'>
                 <input type='submit' name='ef-submitted' value='$submit' />

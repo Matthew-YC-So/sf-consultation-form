@@ -17,7 +17,7 @@
     global $sf_consultation_form_information;
     $sf_consultation_form_information = isset($sf_consultation_form_information) ? $sf_consultation_form_information : '' ;
 
-    $form_title = $is_private  ? __('私人諮詢') : __('一般諮詢') ;
+    $form_title = $is_private  ? __('私人諮詢表格') : __('諮詢表格') ;
 
     $sex_male = isset( $_POST["ef-sex"] ) && $_POST["ef-sex"] == "male" ? "checked=\"checked\"" : "";
     $sex_female = isset( $_POST["ef-sex"] ) && $_POST["ef-sex"] == "female" ? "checked=\"checked\"" : "";
@@ -44,8 +44,8 @@
     $label_web = __('網址', 'sf-consultation-form-td');
     $label_message = __('問題', 'sf-consultation-form-td');
     $label_undisclose = __('不可公開', 'sf-consultation-form-td');
-    $label_birthdates = __('本人,對方及第三者(如有)的生長八字（西元出生年、月、日 及 時)', 'sf-consultation-form-td');
-    $label_mybirthdate = __('本人', 'sf-consultation-form-td');
+    $label_birthdates = __('本人,對方及第三者(如有)的生辰八字（西元出生年、月、日 及 時)', 'sf-consultation-form-td');
+    $label_mybirthdate = __('本人(*)', 'sf-consultation-form-td');
     $label_targetbirthdate = __('對方', 'sf-consultation-form-td');
     $label_intruderbirthdate = __('第三者', 'sf-consultation-form-td');
     $please_select_year = __('年', 'sf-consultation-form-td');
@@ -95,6 +95,15 @@
             ${'bookd' . $dk . $tk } = ${'bookd' . $dk . $tk .'_bool'} ? 'checked="checked"'  : '' ;
             $bookdays_human_text = $bookdays_human_text . (${'bookd' . $dk . $tk .'_bool'} ?  ($bookdays_human_text === '' ? '' : '<br />' ).$dv.' '.$tv : '' );
         }
+    }
+
+    $extrademand_otherinput = isset( $_POST['ef-extrademand-otherinput'])  ? esc_attr($_POST['ef-extrademand-otherinput']) : '';
+    $extrademands = array('extsession' => __('廷長每次諮詢時段'), 'voicemsg' => __('以語音訊息進行諮詢'), 'other' => __('其他') . ' ' . $extrademand_otherinput  );
+    $extrademands_human_text = '';
+    foreach ($extrademands as $extrademand => $extrademand_text) {
+        ${'extrademand_'.$extrademand.'_bool'} = isset( $_POST['ef-extrademand-'.$channel] ) ? filter_var($_POST['ef-extrademand-'.$channel], FILTER_VALIDATE_BOOLEAN) : FALSE;
+        ${'extrademand_'.$extrademand} = ${'extrademand_'.$extrademand.'_bool'} ? 'checked="checked"'  : '' ;
+        $extrademands_human_text = $extrademands_human_text . (${'extrademand_'.$extrademand.'_bool'} ? ($extrademands_human_text === '' ? '' : '<br />' ) . $extrademand_text : '') ;  
     }
 
     // Options 
@@ -196,6 +205,10 @@
         '$label_channel_skype' => __('Skype'),
         '$label_channel_fbmessager' => __('Facebook Messenger'),
         '$label_channel_line' => __('Line'),
+        '$label_extrademands' =>  __('特別要求'),
+        '$label_extrademand_extsession' => __('廷長每次諮詢時段至75分鐘(需額外支付諮詢費 HK$250)'),
+        '$label_extrademand_voicemsg' => __('以語音訊息進行諮詢'),
+        '$label_extrademand_other' => __('其他:'),
         '$channel_skype' => $channel_skype,
         '$channel_fbmessager' => $channel_fbmessager,
         '$channel_line' => $channel_line,
@@ -203,12 +216,17 @@
         '$bookd1am' => $bookd1am, '$bookd2am' => $bookd2am, '$bookd3am' => $bookd3am,  '$bookd4am' => $bookd4am, '$bookd5am' => $bookd5am,
         '$bookd1pm' => $bookd1pm, '$bookd2pm' => $bookd2pm, '$bookd3pm' => $bookd3pm,  '$bookd4pm' => $bookd4pm, '$bookd5pm' => $bookd5pm,
         '$bookdays_human_text' => $bookdays_human_text,
-        '$label_bookingdatetime' => __('請選擇你未來一個月內, 你最方便的諮詢時段 (星期六、日不設諮詢), 我們會盡量配合, 作出安排'),
+        '$label_bookingdatetime' => __('請選擇你未來一個月內, 最方便的諮詢時段 (星期六、日不設諮詢), 我們會盡量配合, 作出安排'),
         '$submit'=> $submit,
         '$email_succeeded' => __('感謝你的查詢！ 我們將盡快回覆你!', 'sf-consultation-form-td'),
         '$incompleted_information' => __('以下資料不齊全'),
         '$email_label_channels' => __('線上諮詢模式'),
         '$email_label_days' => __('偏好日期'),
+        '$extrademand_extsession' => $extrademand_extsession,
+        '$extrademand_voicemsg' => $extrademand_voicemsg,
+        '$extrademand_other' => $extrademand_other,
+        '$extrademand_otherinput' => $extrademand_otherinput,
+        '$extrademands_human_text' => $extrademands_human_text,
         );
  }
  
