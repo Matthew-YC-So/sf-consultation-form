@@ -218,7 +218,7 @@
         '$bookdays_human_text' => $bookdays_human_text,
         '$label_bookingdatetime' => __('請選擇你未來一個月內, 最方便的諮詢時段 (星期六、日不設諮詢), 我們會盡量配合, 作出安排'),
         '$submit'=> $submit,
-        '$email_succeeded' => __('感謝你使用「感情信箱」咨詢服務！ 我們將盡快回覆你!', 'sf-consultation-form-td'),
+        '$email_succeeded' => __('感謝你使用「感情信箱」諮詢服務！ 我們將盡快回覆你!', 'sf-consultation-form-td'),
         '$incompleted_information' => __('以下資料不齊全'),
         '$email_label_channels' => __('線上諮詢模式'),
         '$email_label_days' => __('偏好日期'),
