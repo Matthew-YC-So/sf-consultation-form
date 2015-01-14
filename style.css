@@ -50,7 +50,13 @@ form.entry-form select.wider {
 
 
 form.entry-form .information {
-    color: #2a70a2;
+    color: #FF4719;
+}
+
+#response_message  > div {
+     border: solid 1px #990000;
+     padding: 0.5em;
+     color: #990000;
 }
 
 form.contact-form .error {

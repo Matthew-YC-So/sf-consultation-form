@@ -14,7 +14,7 @@
 
  function translation($is_private){
     
-    global $sf_consultation_form_information;
+    global $sf_consultation_form_information; //  $sf_consultation_form_information = 'TESTING INFORMAION';
     $sf_consultation_form_information = isset($sf_consultation_form_information) ? $sf_consultation_form_information : '' ;
 
     $form_title = $is_private  ? __('私人諮詢表格') : __('諮詢表格') ;
@@ -101,7 +101,7 @@
     $extrademands = array('extsession' => __('廷長每次諮詢時段'), 'voicemsg' => __('以語音訊息進行諮詢'), 'other' => __('其他') . ' ' . $extrademand_otherinput  );
     $extrademands_human_text = '';
     foreach ($extrademands as $extrademand => $extrademand_text) {
-        ${'extrademand_'.$extrademand.'_bool'} = isset( $_POST['ef-extrademand-'.$channel] ) ? filter_var($_POST['ef-extrademand-'.$channel], FILTER_VALIDATE_BOOLEAN) : FALSE;
+        ${'extrademand_'.$extrademand.'_bool'} = isset( $_POST['ef-extrademand-'.$extrademand] ) ? filter_var($_POST['ef-extrademand-'.$extrademand], FILTER_VALIDATE_BOOLEAN) : FALSE;
         ${'extrademand_'.$extrademand} = ${'extrademand_'.$extrademand.'_bool'} ? 'checked="checked"'  : '' ;
         $extrademands_human_text = $extrademands_human_text . (${'extrademand_'.$extrademand.'_bool'} ? ($extrademands_human_text === '' ? '' : '<br />' ) . $extrademand_text : '') ;  
     }
@@ -114,7 +114,7 @@
         ${$who."_already_selected_year"} =  isset( $_POST["ef-{$who}birthyear"] ) ? $_POST["ef-{$who}birthyear"] : '' ;
         ${$who."_already_selected_month"} =  isset( $_POST["ef-{$who}birthmonth"] ) ? $_POST["ef-{$who}birthmonth"] : '' ;
         ${$who."_already_selected_day"} =  isset( $_POST["ef-{$who}birthday"] ) ? $_POST["ef-{$who}birthday"] : '' ;
-        ${$who."_already_selected_hour"} =  isset( $_POST["ef-{$who}birthhour"] ) ? (int)$_POST["ef-{$who}birthhour"] : '' ;
+        ${$who."_already_selected_hour"} =  isset( $_POST["ef-{$who}birthhour"] ) &&  $_POST["ef-{$who}birthhour"] = '' ? (int)$_POST["ef-{$who}birthhour"] : '' ;
 
         ${$who."_year_options"} = "<option value=''>$please_select_year</option>";
         foreach (range(date('Y'), $earliest_year) as $x) {
@@ -199,7 +199,7 @@
         '$required' => $required,
         '$label_mandatory' => $label_mandatory,
         '$action' => esc_url( $_SERVER['REQUEST_URI'] ),
-        '$information' => $sf_consultation_form_information,
+        '$information' => $sf_consultation_form_information  != '' ?  '<div>' . $sf_consultation_form_information  . '</div>' : '',
         '$label_birthday_name_relation' => $label_birthday_name_relation,
         '$label_channels' => __('請選擇你偏好的線上諮詢模式'),
         '$label_channel_skype' => __('Skype'),
@@ -218,7 +218,7 @@
         '$bookdays_human_text' => $bookdays_human_text,
         '$label_bookingdatetime' => __('請選擇你未來一個月內, 最方便的諮詢時段 (星期六、日不設諮詢), 我們會盡量配合, 作出安排'),
         '$submit'=> $submit,
-        '$email_succeeded' => __('感謝你的查詢！ 我們將盡快回覆你!', 'sf-consultation-form-td'),
+        '$email_succeeded' => __('感謝你使用「感情信箱」咨詢服務！ 我們將盡快回覆你!', 'sf-consultation-form-td'),
         '$incompleted_information' => __('以下資料不齊全'),
         '$email_label_channels' => __('線上諮詢模式'),
         '$email_label_days' => __('偏好日期'),
@@ -325,7 +325,7 @@ function sf_html_consultation_form_deliver_mail($is_private) {
             // HTML body
             add_filter('wp_mail_content_type',create_function('', 'return "text/html"; '));
 
-            // var_dump($body);
+            //var_dump($body);
 
             // If email has been process for sending, display a success message
             if ( wp_mail( $to, $subject, $body, $headers ) ) {
@@ -338,10 +338,13 @@ function sf_html_consultation_form_deliver_mail($is_private) {
                 // Clear data
                 foreach($_POST as $key=>$value)
                 {
-                    if (substr($key, 0, 3) === "ef-" )
+                    if (substr($key, 0, 3) === "ef-" ) {
                        $_POST[$key] = "";
-                }
 
+                      //var_dump($key, $_POST[$key]) ;
+                    }
+                }
+                
             } else {
                 echo 'An unexpected error occurred ' . $GLOBALS['phpmailer']->ErrorInfo;
             }

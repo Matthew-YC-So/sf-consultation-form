@@ -8,8 +8,9 @@
     </head>
     <body>
         <h3>$form_title</h3>
+        <div id="response_message">$information</div>
         <form method='post' class='entry-form' action='$action'>
-            <div class="information"><span>$label_mandatory</span><br /><span>$information</span></div>
+            <div class="information"><span>$label_mandatory</span></div>
             <div class='input-group'>
                 <label class='caption'  for='ef-name'>$label_name <span class='md-mark'>(*)</span></label><input id='ef-name' name='ef-name' type='text' value='$name' required placeholder='$hint_name' title='$required' />
             </div>
@@ -34,7 +35,7 @@
                 <label class='caption'  for='ef-message'>$label_message <span class='md-mark'>(*)</span></label><textarea id='ef-message' name='ef-message' required placeholder='$hint_message' title='$required' >$message</textarea>
             </div>
             <div class="input-group public-consultation">
-                <label class='caption'  for='ef-undisclose'>$label_undisclose <span class='md-mark'>(*)</span></label><input id='ef-undisclose' name='ef-undisclose' type='checkbox' $undisclose  />
+                <label class='caption'  for='ef-undisclose'>$label_undisclose</label><input id='ef-undisclose' name='ef-undisclose' type='checkbox' $undisclose  />
             </div>
             <div class='input-group'>
                 <label class='caption wider'>$label_birthdates</label>
