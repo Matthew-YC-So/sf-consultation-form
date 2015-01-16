@@ -206,7 +206,7 @@
         '$label_channel_fbmessager' => __('Facebook Messenger'),
         '$label_channel_line' => __('Line'),
         '$label_extrademands' =>  __('特別要求'),
-        '$label_extrademand_extsession' => __('廷長每次諮詢時段至75分鐘(需額外支付諮詢費 HK$250)'),
+        '$label_extrademand_extsession' => __('延長每次諮詢時段至75分鐘(需額外支付諮詢費 HK$250)'),
         '$label_extrademand_voicemsg' => __('以語音訊息進行諮詢'),
         '$label_extrademand_other' => __('其他:'),
         '$channel_skype' => $channel_skype,
