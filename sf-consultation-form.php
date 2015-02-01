@@ -13,12 +13,31 @@
  * Network: true
  * License: GPL2
  */
-
- function translation($params){
+  function translation($params) 
+  {
     $echo_information = !empty($params['echo_information']) ? $params['echo_information'] : '' ;
-	
-	$forms_titles = array( 'public-consultation' => __('諮詢表格'), 'private-consultation' => __('私人諮詢表格'), 'eight-diagrams' => __('八字諮詢表格')) ;
-    $form_title = $forms_titles[$params['form_name']] ;
+    
+    $form_specific_text = array
+    (
+        'public-consultation' => array
+        (
+            'forms_title' => __('諮詢表格', 'sf-consultation-form-td'),
+            'email_succeeded' => __('感謝你使用「感情信箱」諮詢服務！ 我們將盡快回覆你!', 'sf-consultation-form-td')
+            
+        ) ,
+        'private-consultation' => array
+        (
+            'forms_title' => __('私人諮詢表格', 'sf-consultation-form-td'),
+            'email_succeeded' => __('感謝你使用私人諮詢服務！ 我們將盡快回覆你!', 'sf-consultation-form-td')
+        ),
+        'eight-diagrams' => array
+        (
+            'forms_title' => __('八字諮詢表格', 'sf-consultation-form-td'),
+            'email_succeeded'=> __('感謝你使用八字諮詢服務！ 我們將盡快回覆你!', 'sf-consultation-form-td') ,           
+        ),
+    );
+
+    $form_title = $form_specific_text[$params['form_name']]['forms_title'];
 
     $sex_male = isset( $_POST["ef-sex"] ) && $_POST["ef-sex"] == "male" ? "checked=\"checked\"" : "";
     $sex_female = isset( $_POST["ef-sex"] ) && $_POST["ef-sex"] == "female" ? "checked=\"checked\"" : "";
@@ -161,6 +180,7 @@
     }
 
     return array(
+        '$form_name' => $params['form_name'],
         '$form_title' => $form_title,
         '$label_name' => $label_name,
         '$label_sex' => $label_sex,
@@ -181,9 +201,7 @@
         '$email_label_mybirthdate' => __('我的出生日期'),
         '$email_label_targetbirthdate' => $label_targetbirthdate,
         '$email_label_intruderbirthdate' => $label_intruderbirthdate,
-
-		'$label_astrology_focus' => __('關注方面'),
-		
+		'$label_astrology_focus' => __('關注方面'),	
 		'$label_focus_study' => __('學業'),
 		'$label_focus_health' => __('健康'),
 		'$label_focus_marriage' => __('姻緣/婚姻'),
@@ -192,7 +210,6 @@
 		'$label_focus_other' => __('其他:'),
 		'$hint_otherinput' => __('請註明'),
 		'$focus_otherinput' => $focus_otherinput,
-		
         '$my_year_options' => $my_year_options,
         '$my_month_options' => $my_month_options,
         '$my_day_options' => $my_day_options,
@@ -256,7 +273,7 @@
         '$bookdays_human_text' => $bookdays_human_text,
         '$label_bookingdatetime' => __('請選擇你未來一個月內, 最方便的諮詢時段 (星期六、日不設諮詢), 我們會盡量配合, 作出安排'),
         '$submit'=> $submit,
-        '$email_succeeded' => $params['form_name'] === 'eight-diagrams' ? __('感謝你使用八字諮詢服務！ 我們將盡快回覆你!', 'sf-consultation-form-td') :  __('感謝你使用「感情信箱」諮詢服務！ 我們將盡快回覆你!', 'sf-consultation-form-td'),
+        '$email_succeeded' => $form_specific_text[$params['form_name']]['email_succeeded'],
         '$incompleted_information' => __('以下資料不齊全'),
         '$email_label_channels' => __('線上諮詢模式'),
         '$email_label_days' => __('偏好日期'),

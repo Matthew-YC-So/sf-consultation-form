@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
     <head>
         <meta charset="utf-8" />
@@ -16,24 +15,26 @@
                     vertical-align:  top;
                     border: 1px solid #999;
                 }
-                .caption { font-weight: bold; }
-            
+                .caption { font-weight: bold; }            
             </style>
             <h1>$form_title</h1>
             <table class='form-data'>
                 <tbody>
                     <tr><td class='caption'>$label_name :</td><td class='entry'>$name</td></tr>
-                    <tr><td class='caption'>$label_sex :</td><td class='entry'>$sex</td></tr>
+                    <tr><td class='caption'>$label_sex :</td><td class='entry'>$sex_text_value</td></tr>
                     <tr><td class='caption'>$label_email :</td><td class='entry'>$email</td></tr>
+					<tr><td class='caption'>$label_tel :</td><td class='entry'>$tel</td></tr>
                     <tr><td class='caption'>$label_web :</td><td class='entry'>$web</td></tr>
-                    <tr><td class='caption'>$label_message :</td><td class='entry message'>$message</td></tr>
-                    <tr class="public-consultation"><td class="caption">$label_undisclose :</td><td class='entry undisclose'>$undisclose_human_text</td></tr>
-                    <tr><td class='caption'>$label_mybirthdate:</td><td class='entry'>$mybirth_date</td></tr>
-                    <tr><td class='caption'>$label_targetbirthdate$label_birthday_name_relation :</td><td class='entry'>$targetbirth_date $targetname $targetrelate</td></tr>
-                    <tr><td class='caption'>$label_intruderbirthdate$label_birthday_name_relation :</td><td class='entry'>$intruderbirth_date $intrudername $intruderrelate</td></tr>
-                    <tr class="private-consultation"><td class='caption'>$email_label_channels :</td><td class='entry undisclose'>$channels_human_text</td></tr>
-                    <tr class="private-consultation"><td class='caption'>$email_label_days :</td><td class='entry undisclose'>$bookdays_human_text</td></tr>
-                    <tr class="private-consultation"><td class='caption'>$label_extrademands :</td><td class='entry undisclose'>$extrademands_human_text</td></tr>
+                    <tr class="x-eight-diagrams"><td class='caption'>$label_message :</td><td class='entry message'>$message</td></tr>
+                    <tr class="public-consultation x-private-consultation x-eight-diagrams"><td class="caption">$label_undisclose :</td><td class='entry undisclose'>$undisclose_human_text</td></tr>
+                    <tr><td class='caption'>$email_label_mybirthdate:</td><td class='entry'>$mybirth_date</td></tr>
+                    <tr class="x-eight-diagrams"><td class='caption'>$email_label_targetbirthdate$label_birthday_name_relation :</td><td class='entry'>$targetbirth_date $targetname $targetrelate</td></tr>
+                    <tr class="x-eight-diagrams"><td class='caption'>$email_label_intruderbirthdate$label_birthday_name_relation :</td><td class='entry'>$intruderbirth_date $intrudername $intruderrelate</td></tr>
+                    <tr class="private-consultation x-public-consultation x-eight-diagrams"><td class='caption'>$email_label_channels :</td><td class='entry'>$channels_human_text</td></tr>
+                    <tr class="private-consultation x-public-consultation x-eight-diagrams"><td class='caption'>$email_label_days :</td><td class='entry'>$bookdays_human_text</td></tr>
+                    <tr class="private-consultation x-public-consultation x-eight-diagrams"><td class='caption'>$label_extrademands :</td><td class='entry'>$extrademands_human_text</td></tr>
+					<tr class="x-private-consultation x-public-consultation"><td class='caption'>$label_astrology_focus :</td><td class='entry'>$focus_human_text</td></tr>
+					<tr class="x-private-consultation x-public-consultation"><td class='caption'>$label_complementary_message_email :</td><td class='entry message'>$complementary_message</td></tr>
                 </tbody>
             </table>        
     </body>

@@ -1,0 +1,198 @@
+/* line 4, ../sass/style.scss */
+.form-title {
+  text-shadow: rgba(0, 100, 0, 0.2) 1px 1px 0, rgba(0, 100, 0, 0.1) 2px 2px 0;
+}
+
+/* line 9, ../sass/style.scss */
+form.entry-form {
+  -moz-box-shadow: rgba(0, 128, 0, 0.4) 0 0 2px, rgba(0, 128, 0, 0.2) 0 0 1px 1px inset;
+  -webkit-box-shadow: rgba(0, 128, 0, 0.4) 0 0 2px, rgba(0, 128, 0, 0.2) 0 0 1px 1px inset;
+  box-shadow: rgba(0, 128, 0, 0.4) 0 0 2px, rgba(0, 128, 0, 0.2) 0 0 1px 1px inset;
+  padding: 15px;
+  width: 100%;
+  margin: 15px auto;
+}
+
+/* line 16, ../sass/style.scss */
+#response_message {
+  margin: 0 auto;
+}
+/* line 18, ../sass/style.scss */
+#response_message > div {
+  border: solid 1px #990000;
+  padding: 15px;
+  color: #990000;
+  width: 100%;
+}
+
+/* line 27, ../sass/style.scss */
+form.entry-form input {
+  width: auto;
+}
+
+/* line 61, C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/css3/_user-interface.scss */
+form.entry-form input[type="text"]:-moz-placeholder, form.entry-form input[type="email"]:-moz-placeholder, form.entry-form input[type="url"]:-moz-placeholder, form.entry-form textarea:-moz-placeholder {
+  color: #bfbfbf;
+}
+/* line 64, C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/css3/_user-interface.scss */
+form.entry-form input[type="text"]::-moz-placeholder, form.entry-form input[type="email"]::-moz-placeholder, form.entry-form input[type="url"]::-moz-placeholder, form.entry-form textarea::-moz-placeholder {
+  color: #bfbfbf;
+}
+/* line 67, C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/css3/_user-interface.scss */
+form.entry-form input[type="text"]:-ms-input-placeholder, form.entry-form input[type="email"]:-ms-input-placeholder, form.entry-form input[type="url"]:-ms-input-placeholder, form.entry-form textarea:-ms-input-placeholder {
+  color: #bfbfbf;
+}
+/* line 56, C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/css3/_user-interface.scss */
+form.entry-form input[type="text"]::-webkit-input-placeholder, form.entry-form input[type="email"]::-webkit-input-placeholder, form.entry-form input[type="url"]::-webkit-input-placeholder, form.entry-form textarea::-webkit-input-placeholder {
+  color: #bfbfbf;
+}
+
+/* line 40, ../sass/style.scss */
+form.entry-form input[type=text], form.entry-form input[type=email], form.entry-form input[type=url], form.entry-form textarea {
+  width: 20em;
+}
+
+/* line 44, ../sass/style.scss */
+form.entry-form textarea {
+  height: 6em;
+  width: 30em;
+}
+
+/* line 49, ../sass/style.scss */
+form.entry-form input[type=radio] {
+  margin-left: 2em;
+}
+
+/* line 53, ../sass/style.scss */
+form.entry-form label {
+  display: inline-block;
+  width: 8em;
+  font-weight: bold;
+  vertical-align: top;
+}
+
+/* line 61, ../sass/style.scss */
+form.entry-form select {
+  font-size: 0.8em;
+}
+
+/* line 66, ../sass/style.scss */
+form.entry-form .wider {
+  width: 30em;
+}
+
+/* line 70, ../sass/style.scss */
+form.entry-form input + label {
+  width: auto;
+}
+
+/* line 74, ../sass/style.scss */
+form.entry-form .input-group {
+  margin: 0.5em 0 0 0;
+}
+
+/* line 78, ../sass/style.scss */
+form.entry-form select {
+  width: 3.5em;
+}
+
+/* line 82, ../sass/style.scss */
+form.entry-form select.wider {
+  width: 5em;
+}
+
+/* line 87, ../sass/style.scss */
+form.entry-form .information {
+  color: #FF4719;
+}
+
+/* line 91, ../sass/style.scss */
+form.entry-form .error {
+  color: #ff0000;
+}
+
+/* line 95, ../sass/style.scss */
+form.entry-form .command {
+  margin-top: 1em;
+}
+
+/* line 99, ../sass/style.scss */
+form.entry-form label.narrow {
+  width: 3.5em;
+  margin-right: 1em;
+}
+
+/* line 104, ../sass/style.scss */
+form.entry-form input.narrow, form.entry-form span.input-stuff {
+  display: inline-block;
+  width: 5em;
+  font-size: 0.8em;
+  padding: 0;
+  height: auto;
+  margin-right: 0.2em;
+}
+
+/* line 116, ../sass/style.scss */
+.eight-diagrams form.entry-form div.birthdates > div.my label {
+  width: 0;
+}
+/* line 120, ../sass/style.scss */
+.eight-diagrams form.entry-form div.birthdates > div.my select {
+  width: 5em;
+}
+
+/* line 129, ../sass/style.scss */
+form.entry-form #channels input + label {
+  margin: 0 1.6em 0 0.1em;
+}
+/* line 137, ../sass/style.scss */
+form.entry-form #astrology_focus input {
+  margin-left: 1em;
+}
+/* line 141, ../sass/style.scss */
+form.entry-form #astrology_focus #ef-focus-otherinput {
+  height: 1.5em;
+  padding: 0.1em;
+}
+/* line 146, ../sass/style.scss */
+form.entry-form #astrology_focus input + label {
+  margin: 0 1em 0 0.1em;
+}
+/* line 150, ../sass/style.scss */
+form.entry-form #astrology_focus #ef-focus-other {
+  clear: left;
+}
+
+/* line 156, ../sass/style.scss */
+form.entry-form .wide_title_caption {
+  display: block;
+  width: auto;
+}
+
+/* line 161, ../sass/style.scss */
+form.entry-form #channels ul {
+  list-style: none;
+  margin-left: 1em;
+}
+
+/* line 166, ../sass/style.scss */
+form.entry-form #channels, form.entry-form #bookings {
+  margin-top: 2em;
+}
+
+/* line 171, ../sass/style.scss */
+form.entry-form #bookings input[type=checkbox] + label {
+  margin-right: 2em;
+}
+
+/* line 176, ../sass/style.scss */
+#extrademands input + label {
+  margin: 0 1.6em 0 0.1em;
+}
+
+/* line 180, ../sass/style.scss */
+#ef-extrademand-otherinput {
+  font-size: 0.8em;
+  height: auto;
+  padding: 0.1em;
+}

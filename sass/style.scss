@@ -1,6 +1,41 @@
+@import "compass/css3";
+@import "compass/css3/user-interface";
+
+.form-title {
+	@include text-shadow(rgba(DarkGreen , 0.2) 1px 1px 0, rgba(DarkGreen , 0.1) 2px 2px 0);
+}
+
+
+form.entry-form {
+	@include box-shadow(rgba(green, 0.4) 0 0 2px, rgba(green, 0.2) 0 0 1px 1px inset);	
+	padding: 15px;
+	width:100%;
+	margin: 15px auto;
+}
+
+#response_message   {
+	margin: 0 auto;
+	> div {
+		 border: solid 1px #990000;
+		 padding: 15px;
+		 color: #990000;
+		 width:100%;
+  }
+}
+
+
 form.entry-form input {
     width: auto;
 }
+
+form.entry-form	{
+	input[type="text"], input[type="email"] , input[type="url"], textarea {
+	  @include input-placeholder {
+		color: #bfbfbf;
+	  }
+	}
+}
+
 
 form.entry-form input[type=text], form.entry-form input[type=email], form.entry-form input[type=url], form.entry-form textarea {
 	width:20em;
@@ -53,14 +88,8 @@ form.entry-form .information {
     color: #FF4719;
 }
 
-#response_message  > div {
-     border: solid 1px #990000;
-     padding: 0.5em;
-     color: #990000;
-}
-
-form.contact-form .error {
-    color: #990000;
+form.entry-form .error {
+    color: #ff0000;
 }
 
 form.entry-form .command{
@@ -81,8 +110,47 @@ form.entry-form input.narrow , form.entry-form span.input-stuff{
     margin-right: 0.2em;
 }
 
-form.entry-form #channels input + label  {
-     margin: 0 1.6em 0 0.1em;
+
+.eight-diagrams {
+    form.entry-form div.birthdates > div.my {
+        label
+        {
+            width : 0;
+        }
+        select {
+            width:5em;
+        }
+    }
+}
+
+
+form.entry-form {
+	#channels {
+		input + label {
+			margin: 0 1.6em 0 0.1em;
+		}
+	 }
+	 
+	 #astrology_focus  
+	 {
+ 
+		input {
+			margin-left: 1em;
+		}
+		
+		#ef-focus-otherinput {
+			height:1.5em;
+			padding:0.1em;
+		}
+		
+		input + label  {
+			margin: 0 1em 0 0.1em;
+		}
+		
+		#ef-focus-other {
+			clear:left;
+		}
+	 }
 }
 
 form.entry-form .wide_title_caption {
@@ -99,8 +167,10 @@ form.entry-form #channels, form.entry-form  #bookings {
    margin-top : 2em;
 }
 
-#extrademands input {
-    
+form.entry-form  #bookings {
+   input[type=checkbox] + label {
+        margin-right:2em;
+   }
 }
 
 #extrademands input + label {
