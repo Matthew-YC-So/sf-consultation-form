@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-
 <html lang="en">
     <head>
         <meta charset="utf-8" />
         <title></title>
-        <link type="text/css" rel="stylesheet" href="style.css" />
+        <link type="text/css" rel="stylesheet" href="stylesheets/style.css" />
     </head>
     <body>
-        <h3>$form_title</h3>
+        <h3 class="form-title">$form_title</h3>
         <div id="response_message">$information</div>
         <form method='post' class='entry-form' action='$action'>
             <div class="information"><span>$label_mandatory</span></div>
@@ -28,13 +27,13 @@
             <div class='input-group'>
                 <label class='caption'  for='ef-web'>$label_web</label><input id='ef-web' name='ef-web'  type='url' value='$web' placeholder='$hint_web' title='$hint_web' />
             </div>
-            <div class='input-group'>
+            <div class="input-group x-eight-diagrams">
                 <label class='caption'  for='ef-subject'>$label_subject <span class='md-mark'>(*)</span></label><input id='ef-subject' name='ef-subject' type='text' value='$subject' required placeholder='$hint_subject' title='$required' />
             </div>
-            <div class='input-group'>
+            <div class="input-group x-eight-diagrams">
                 <label class='caption'  for='ef-message'>$label_message <span class='md-mark'>(*)</span></label><textarea id='ef-message' name='ef-message' required placeholder='$hint_message' title='$required' >$message</textarea>
             </div>
-            <div class="input-group public-consultation">
+            <div class="input-group public-consultation x-eight-diagrams x-private-consultation">
                 <label class='caption'  for='ef-undisclose'>$label_undisclose</label><input id='ef-undisclose' name='ef-undisclose' type='checkbox' $undisclose  />
             </div>
             <div class='input-group'>
@@ -46,14 +45,14 @@
 				    <select id='ef-mybirthday' name='ef-mybirthday' >$my_day_options</select>
 				    <select id='ef-mybirthhour' name='ef-mybirthhour' >$my_hour_options</select>
                 </div>
-                <div>
+                <div class="x-eight-diagrams">
                     <label class='caption narrow'  for='ef-targetname'>$label_targetbirthdate</label><input id='ef-targetname' name='ef-targetname' type='text' value='$targetname' placeholder='$hint_pername' class="narrow" /><input id='ef-targetrelate' name='ef-targetrelate' type='text' value='$targetrelate' placeholder='$hint_relation' class="narrow" />
 				    <select id='ef-targetbirthyear' name='ef-targetbirthyear' class="wider">$target_year_options</select>
 				    <select id='ef-targetbirthmonth' name='ef-targetbirthmonth' >$target_month_options</select>
 				    <select id='ef-targetbirthday' name='ef-targetbirthday' >$target_day_options</select>
 				    <select id='ef-targetbirthhour' name='ef-targetbirthhour' >$target_hour_options</select>
                 </div>
-                <div>
+                <div class="x-eight-diagrams">
                     <label class='caption narrow'  for='ef-intrudername'>$label_intruderbirthdate</label><input id='ef-intrudername' name='ef-intrudername' type='text' value='$intrudername' placeholder='$hint_pername'  class="narrow" /><input id='ef-intruderrelate' name='ef-intruderrelate' type='text' value='$intruderrelate' placeholder='$hint_relation'  class="narrow" />
 				    <select id='ef-intruderbirthyear' name='ef-intruderbirthyear' class="wider">$intruder_year_options</select>
 				    <select id='ef-intruderbirthmonth' name='ef-intruderbirthmonth' >$intruder_month_options</select>
@@ -61,13 +60,13 @@
 				    <select id='ef-intruderbirthhour' name='ef-intruderbirthhour' >$intruder_hour_options</select>
                 </div>
             </div>
-            <div class="input-group private-consultation" id="channels">
+            <div class="input-group private-consultation x-eight-diagrams x-public-consultation" id="channels">
                 <label class='wide_title_caption'>$label_channels <span class='md-mark'>(*)</span></label>
                 <input id='ef-channel-skype' name='ef-channel-skype' type='checkbox' $channel_skype  /><label class='caption' for='ef-channel-skype'>$label_channel_skype</label>
                 <input id='ef-channel-fbmessager' name='ef-channel-fbmessager' type='checkbox' $channel_fbmessager  /><label class='caption' for='ef-channel-fbmessager'>$label_channel_fbmessager</label>
                 <input id='ef-channel-line' name='ef-channel-line' type='checkbox' $channel_line /><label class='caption' for='ef-channel-line'>$label_channel_line</label>
             </div>
-            <div class="input-group private-consultation" id="bookings">
+            <div class="input-group private-consultation x-eight-diagrams x-public-consultation" id="bookings">
                 <label class='wide_title_caption'>$label_bookingdatetime <span class='md-mark'>(*)</span></label>
                 <ul>
                     <li><label>星期一</label><input type="checkbox" id='ef-bookd1am' name='ef-bookd1am' $bookd1am /><label for="ef-bookd1am">上午</label><input type="checkbox" id='ef-bookd1pm' name='ef-bookd1pm' $bookd1pm /><label for="ef-bookd1pm">下午</label></li>
@@ -77,14 +76,26 @@
                     <li><label>星期五</label><input type="checkbox" id='ef-bookd5am' name='ef-bookd5am' $bookd5am /><label for="ef-bookd5am">上午</label><input type="checkbox" id='ef-bookd5pm' name='ef-bookd5pm' $bookd5pm /><label for="ef-bookd5pm">下午</label></li>
                 </ul>
             </div>
-            <div class="input-group private-consultation" id="extrademands">
-                <label class='wide_title_caption'>$label_extrademands <span class='md-mark'>(*)</span></label>
+            <div class="input-group private-consultation x-eight-diagrams x-public-consultation" id="extrademands">
+                <label class='wide_title_caption'>$label_extrademands</label>
                 <input id='ef-extrademand-extsession' name='ef-extrademand-extsession' type='checkbox' $extrademand_extsession  /><label class='caption' for='ef-extrademand-extsession'>$label_extrademand_extsession</label><br/>
                 <input id='ef-extrademand-voicemsg' name='ef-extrademand-voicemsg' type='checkbox' $extrademand_voicemsg  /><label class='caption' for='ef-extrademand-voicemsg'>$label_extrademand_voicemsg</label><br/>
                 <input id='ef-extrademand-other' name='ef-extrademand-other' type='checkbox' $extrademand_other /><label class='caption' for='ef-extrademand-other'>$label_extrademand_other</label><input type="text" id="ef-extrademand-otherinput" name="ef-extrademand-otherinput" value="$extrademand_otherinput" />
             </div>
+			<div class="input-group eight-diagrams x-private-consultation x-public-consultation" id="astrology_focus">
+				<label class='wide_title_caption'>$label_astrology_focus</label>
+				<input id='ef-focus-study' name='ef-focus-study' type='checkbox' $focus_study  /><label class='caption' for='ef-focus-study'>$label_focus_study</label><br />
+				<input id='ef-focus-health' name='ef-focus-health' type='checkbox' $focus_health  /><label class='caption' for='ef-focus-health'>$label_focus_health</label><br />
+				<input id='ef-focus-marriage' name='ef-focus-marriage' type='checkbox' $focus_marriage  /><label class='caption' for='ef-focus-marriage'>$label_focus_marriage</label><br />
+				<input id='ef-focus-fortune' name='ef-focus-fortune' type='checkbox' $focus_fortune  /><label class='caption' for='ef-focus-fortune'>$label_focus_fortune</label><br />
+				<input id='ef-focus-fame' name='ef-focus-fame' type='checkbox' $focus_fame  /><label class='caption' for='ef-focus-fame'>$label_focus_fame</label><br />
+				<input id='ef-focus-other' name='ef-focus-other' type='checkbox' $focus_other  /><label class='caption' for='ef-focus-other'>$label_focus_other</label><input type="text" id="ef-focus-otherinput" name="ef-focus-otherinput" value="$focus_otherinput" placeholder="$hint_otherinput" />				
+			</div>
+			<div class="input-group eight-diagrams x-private-consultation x-public-consultation" id="complementary_message">
+				<label class='wide_title_caption'  for='ef-complementary-message'>$label_complementary_message</label><textarea id='ef-complementary-message' name='ef-complementary-message'>$complementary_message</textarea>
+			</div>
             <div class='command'>
-                <input type='submit' name='ef-submitted' value='$submit' />
+                <input type='submit' id='ef-submitted' name='ef-submitted' value='$submit' />				
             </div>
         </form>
     </body>
